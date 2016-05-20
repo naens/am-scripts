@@ -1,7 +1,8 @@
 #!/bin/bash
 if [ "$#" -ne 1 ]; then
-	echo "illegal number of parameters"
-	echo "$0 script-url"
+	echo "Illegal number of parameters"
+	echo "Usage: "`basename "$0"`" script-url"
+	exit 1
 fi
 
 d=/tmp/scripts-$RANDOM
@@ -9,6 +10,11 @@ f=script-$RANDOM
 u=$1
 mkdir -p $d
 wget -q -O $d/$f $u
+if [ "$?" -ne 0 ]; then
+	echo "Could not download file \"$u\""
+	rm -rf $d
+	exit 1
+fi
 sbcl --script $d/$f
 rm -rf $d
 unset d
