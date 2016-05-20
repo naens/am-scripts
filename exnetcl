@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ "$#" -ne 1 ]; then
+	echo "illegal number of parameters"
+	echo "$0 script-url"
+fi
+
+d=/tmp/scripts-$RANDOM
+f=script-$RANDOM
+u=$1
+mkdir -p $d
+wget -q -O $d/$f $u
+sbcl --script $d/$f
+rm -rf $d
+unset d
+unset f
+unset u
