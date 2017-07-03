@@ -40,11 +40,13 @@
 
 (defun time-ep-engsub (time)
   (let* ((weeks 0)
-	 (days 4)
-	 (hours 19)
+	 (days 0)
+	 (hours 11)
+	 (minutes 30)
 	 (days-delay (+ days (* 7 weeks)))
-	 (hours-delay (+ hours (* 24 days-delay))))
-    (local-time:timestamp+ time hours-delay :hour)))
+	 (hours-delay (+ hours (* 24 days-delay)))
+	 (minutes-delay (+ minutes (* 60 hours-delay))))
+    (local-time:timestamp+ time minutes-delay :minute)))
 
 (defun date-time (time)
   (local-time:format-timestring nil time
