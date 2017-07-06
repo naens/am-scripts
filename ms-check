@@ -1,0 +1,2 @@
+#!/bin/sh
+exnetcl https://raw.githubusercontent.com/naens/am-scripts/master/ms-check.lisp
